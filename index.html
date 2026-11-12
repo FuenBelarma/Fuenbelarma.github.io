@@ -160,7 +160,8 @@ header{position:fixed;inset:0 0 auto 0;z-index:50;backdrop-filter:blur(14px);bac
 .mlist{flex:1;min-height:0;overflow:auto;padding:16px 22px 24px;display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));grid-auto-rows:max-content;gap:16px;align-content:start}
 .tile{border:1px solid var(--line);border-radius:16px;overflow:hidden;background:var(--panel2);scroll-margin:16px}
 .tile.focus{border-color:rgba(155,92,246,.9);box-shadow:0 0 0 2px rgba(155,92,246,.45)}
-.tile iframe{display:block;width:100%;aspect-ratio:9/16;border:0;background:#000}
+.vwrap{position:relative;aspect-ratio:9/16;overflow:hidden;background:#000}
+.vwrap iframe{position:absolute;left:0;top:0;width:360px;height:640px;border:0;transform-origin:0 0;transform:scale(var(--s,.6))}
 .tile .t{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:11px 14px}
 .tile .t b{font-size:13.5px}
 .tile .t a{flex:none;font-size:12px;color:var(--blue);font-weight:600}
@@ -635,6 +636,8 @@ $("#driveBtn").href = `https://drive.google.com/drive/folders/${SITE.driveFolder
 /* modal */
 const modal = $("#modal"), frame = $("#mframe"), mlist = $("#mlist");
 const thumbHTML = id => { const src = thumbUrl(id, 700); return `<div class="bg" style="background-image:url('${src}')"></div><img class="v" loading="lazy" src="${src}" alt="" onerror="this.parentNode.innerHTML=''">`; };
+/* Drive's player has a minimum layout width; render it at 360×640 and scale it to the tile so the video stays centred */
+const fitPlayer = new ResizeObserver(es => es.forEach(e => e.target.style.setProperty("--s", e.contentRect.width / 360)));
 function openCategory(cat, focusId) {
   const items = SITE.projects.filter(p => p.category === cat), meta = (SITE.categories || {})[cat] || {};
   frame.src = "about:blank"; frame.hidden = true; $("#mhint").hidden = true; $("#mback").hidden = true;
@@ -643,9 +646,9 @@ function openCategory(cat, focusId) {
   $("#mcat").textContent = cat; $("#mdesc").textContent = meta.desc || "";
   items.forEach(p => {
     const t = el("div", "tile" + (p.driveId === focusId ? " focus" : ""),
-      `<iframe loading="lazy" src="https://drive.google.com/file/d/${esc(p.driveId)}/preview" allow="autoplay; fullscreen" allowfullscreen title="${esc(p.title)}"></iframe>
+      `<div class="vwrap"><iframe loading="lazy" src="https://drive.google.com/file/d/${esc(p.driveId)}/preview" allow="autoplay; fullscreen" allowfullscreen title="${esc(p.title)}"></iframe></div>
        <div class="t"><b>${esc(p.title)}</b><a href="https://drive.google.com/file/d/${esc(p.driveId)}/view" target="_blank" rel="noopener">Drive ↗</a></div>`);
-    t.id = "tile-" + p.driveId; mlist.append(t);
+    t.id = "tile-" + p.driveId; mlist.append(t); fitPlayer.observe(t.querySelector(".vwrap"));
   });
   $("#mopen").href = `https://drive.google.com/drive/folders/${meta.folderId || SITE.driveFolder}`;
   modal.classList.add("open"); mlist.scrollTop = 0;
