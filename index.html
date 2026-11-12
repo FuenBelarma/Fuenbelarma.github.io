@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Portfolio | AI Video Editor and VSL Creative Specialist</title>
+<meta name="description" content="AI UGC, VSL creatives, 3D animated ads and Claude-powered creative workflows for DTC and e-commerce brands.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#03040f; --panel:#070b1c; --panel2:#0b1126; --line:rgba(140,160,255,.14);
+  --text:#f4f6ff; --muted:#a3abc4; --dim:#6f7893;
+  --blue:#4c8dff; --violet:#9b5cf6; --pink:#e24bd0;
+  --grad:linear-gradient(90deg,#4c8dff,#9b5cf6);
+  --r:22px; --wrap:1120px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:84px}
+body{background:var(--bg);color:var(--text);font:16px/1.6 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background:radial-gradient(900px 500px at 95% 0%,rgba(40,90,200,.28),transparent 60%),
+             radial-gradient(700px 420px at 0% 0%,rgba(110,60,200,.18),transparent 60%),
+             radial-gradient(900px 420px at 50% 100%,rgba(190,40,140,.10),transparent 60%)}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+h1,h2,h3,h4{font-family:"Space Grotesk",Inter,sans-serif;line-height:1.08;letter-spacing:-.02em}
+h2{font-size:clamp(32px,4.6vw,50px);font-weight:700;text-wrap:balance}
+h3{font-size:19px;font-weight:600}
+.g{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.wrap{width:min(var(--wrap),100% - 40px);margin-inline:auto}
+section{padding:92px 0}
+.eyebrow{font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--blue);font-weight:600;margin-bottom:14px}
+.lead{color:var(--muted);font-size:17px;max-width:660px}
+.center{text-align:center}.center .lead{margin-inline:auto}
+.head{margin-bottom:44px}.head h2{margin-bottom:16px}
+.card{background:linear-gradient(180deg,rgba(11,17,38,.9),rgba(6,9,24,.9));border:1px solid var(--line);border-radius:var(--r);padding:26px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border-radius:999px;font-weight:600;font-size:14px;border:1px solid var(--line);background:rgba(255,255,255,.03);cursor:pointer;color:var(--text);transition:.2s;font-family:inherit}
+.btn:hover{border-color:rgba(140,160,255,.45);transform:translateY(-1px)}
+.btn.primary{background:var(--grad);border-color:transparent;box-shadow:0 10px 30px -10px rgba(110,100,255,.7)}
+.pill{display:inline-block;padding:7px 15px;border:1px solid var(--line);border-radius:999px;font-size:13px;color:#cfd5ea;background:rgba(255,255,255,.03)}
+.checks{list-style:none;display:grid;gap:12px}
+.checks li{position:relative;padding-left:28px;color:#cfd5ea;font-size:14.5px}
+.checks li::before{content:"";position:absolute;left:4px;top:6px;width:9px;height:5px;border-left:2px solid var(--blue);border-bottom:2px solid var(--blue);transform:rotate(-45deg)}
+
+/* nav */
+header{position:fixed;inset:0 0 auto 0;z-index:50;backdrop-filter:blur(14px);background:rgba(3,4,15,.72);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:68px;gap:20px}
+.logo{display:flex;align-items:center;gap:10px;font-family:"Space Grotesk",Inter,system-ui,sans-serif;font-weight:700;font-size:18px}
+.mark{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;font-size:12px;font-weight:700;background:linear-gradient(135deg,#1a1f4d,#2a1456);border:1px solid var(--line);box-shadow:0 0 22px rgba(110,100,255,.45)}
+.mark span{background:linear-gradient(90deg,#5aa0ff,#d05cf6);-webkit-background-clip:text;background-clip:text;color:transparent}
+.links{display:flex;gap:26px;font-size:14px;color:var(--muted)}
+.links a:hover{color:var(--text)}
+#burger{display:none;background:none;border:1px solid var(--line);color:var(--text);border-radius:10px;width:40px;height:40px;font-size:18px;cursor:pointer}
+
+/* hero */
+.hero{padding:150px 0 80px}
+.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:52px;align-items:center}
+.hero h1{font-size:clamp(38px,5.4vw,62px);font-weight:700;margin:16px 0 22px;text-wrap:balance}
+.hero p{color:var(--muted);font-size:17px;max-width:560px}
+.cta{display:flex;flex-wrap:wrap;gap:12px;margin:30px 0 26px}
+.ticker{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--dim)}
+.ticker b{color:var(--blue);margin:0 10px;font-weight:400}
+.stage{position:relative;aspect-ratio:4/4.3;border-radius:28px;border:1px solid var(--line);overflow:hidden;background:radial-gradient(120% 90% at 50% 0%,#14205a,#060919 70%)}
+.stage img{width:100%;height:100%;object-fit:cover}
+.phones{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;gap:16px}
+.phone{width:27%;aspect-ratio:9/16;border-radius:18px;border:1px solid rgba(160,170,255,.35);background:linear-gradient(160deg,rgba(76,141,255,.35),rgba(155,92,246,.25) 55%,rgba(226,75,208,.22));box-shadow:0 30px 60px -20px rgba(80,70,255,.6);display:flex;flex-direction:column;justify-content:flex-end;padding:12px;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#dfe5ff}
+.phone:nth-child(1){transform:rotate(-7deg) translateY(14px)}
+.phone:nth-child(2){transform:scale(1.12);z-index:2}
+.phone:nth-child(3){transform:rotate(7deg) translateY(14px)}
+.phone i{display:block;height:4px;border-radius:9px;background:rgba(255,255,255,.75);margin-top:6px;width:80%}
+.phone i+i{width:55%;opacity:.5}
+
+/* claude */
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.tag{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--violet);display:block;margin-bottom:10px}
+.card p{color:var(--muted);font-size:14.5px;margin-top:10px}
+.term{margin-top:22px;font:13.5px/1.7 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;padding:0;overflow:hidden}
+.term-bar{display:flex;align-items:center;gap:7px;padding:12px 18px;border-bottom:1px solid var(--line);color:var(--dim);font-size:12px}
+.term-bar i{width:10px;height:10px;border-radius:50%;background:#2a3050}
+.term-body{padding:20px 22px;color:#cfd5ea}
+.term-body .cmd{color:var(--text)}.term-body .cmd b{color:var(--blue)}
+.term-body ul{list-style:none;margin:10px 0}
+.term-body li::before{content:"✓ ";color:#5ee0a0}
+.term-body small{color:var(--dim)}
+.note{font-size:12.5px;color:var(--dim);margin-top:10px}
+
+/* results */
+.results{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px}
+.res{padding:0;overflow:hidden}
+.res .vid{aspect-ratio:9/12;background:#000}
+.res iframe{width:100%;height:100%;border:0}
+.res .meta{padding:20px 22px 6px}
+.res .shot{width:calc(100% - 28px);margin:10px 14px 16px;border-radius:14px}
+
+/* work */
+.filters{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:34px}
+.filters button{font:inherit;font-size:13.5px;padding:9px 18px;border-radius:999px;border:1px solid var(--line);background:rgba(255,255,255,.03);color:var(--muted);cursor:pointer}
+.filters button.on{background:var(--grad);color:#fff;border-color:transparent}
+.work{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:20px}
+.proj{padding:0;overflow:hidden;cursor:pointer;transition:.25s;text-align:left;color:inherit;font:inherit;display:block;width:100%}
+.proj:hover{transform:translateY(-4px);border-color:rgba(140,160,255,.45)}
+.thumb{position:relative;aspect-ratio:16/10;background:radial-gradient(120% 120% at 20% 0%,#1b2a78,#0a0d24 60%),#0a0d24;overflow:hidden}
+.thumb img{width:100%;height:100%;object-fit:cover}
+.thumb img.v{object-fit:contain;position:relative;z-index:1}
+.thumb .bg{position:absolute;inset:-20px;background-size:cover;background-position:center;filter:blur(18px) brightness(.55)}
+.thumb::after{content:"";position:absolute;left:50%;top:50%;width:56px;height:56px;margin:-28px;border-radius:50%;background:rgba(3,4,15,.6) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='white' d='M9 6v12l10-6z'/%3E%3C/svg%3E") center/26px no-repeat;border:1px solid rgba(255,255,255,.3);backdrop-filter:blur(6px)}
+.proj .body{padding:20px 22px 22px}
+.cat{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--blue);margin-bottom:8px}
+.proj p{color:var(--muted);font-size:14px;margin:8px 0 14px}
+.tags{display:flex;flex-wrap:wrap;gap:6px}
+.tags span{font-size:11.5px;padding:4px 10px;border-radius:999px;background:rgba(120,140,255,.1);color:#c5cdf0}
+.more{margin-top:34px;text-align:center}
+.view{margin-top:16px;font-size:13.5px;font-weight:600;color:var(--blue)}
+
+/* modal */
+#modal{position:fixed;inset:0;z-index:100;background:rgba(2,3,10,.86);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;padding:20px}
+#modal.open{display:flex}
+.mbox{width:min(980px,100%);height:min(86vh,720px);background:var(--panel);border:1px solid var(--line);border-radius:20px;overflow:hidden;display:flex;flex-direction:column}
+.mtop{display:flex;justify-content:space-between;align-items:center;padding:12px 18px;border-bottom:1px solid var(--line);font-weight:600;font-size:14px}
+.mtop button{background:none;border:0;color:var(--text);font-size:24px;cursor:pointer;line-height:1}
+.mbox iframe{flex:1;width:100%;border:0;background:#000}
+
+/* services */
+.services{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px}
+.services a{display:inline-block;margin-top:16px;font-size:13.5px;color:var(--blue);font-weight:600}
+
+/* about */
+.about{display:grid;grid-template-columns:.9fr 1.1fr;gap:48px;align-items:start}
+.portrait{aspect-ratio:4/5;border-radius:26px;border:1px solid var(--line);overflow:hidden;background:radial-gradient(100% 80% at 50% 10%,#16225e,#060919 70%);display:grid;place-items:center;color:var(--dim);font-size:13px;letter-spacing:.14em;text-transform:uppercase}
+.portrait img{width:100%;height:100%;object-fit:cover}
+.about p{color:var(--muted);margin-top:16px}
+.callout{margin:24px 0;padding:18px 20px;border-radius:16px;border:1px solid rgba(76,141,255,.4);background:rgba(20,40,90,.35);font-size:14.5px}
+.two{grid-template-columns:1fr 1fr}
+
+/* skills */
+.pills{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;max-width:900px;margin:0 auto 60px}
+.tools{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;margin-top:28px}
+.tools small{font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--dim)}
+.tools h4{font-size:17px;margin:6px 0 16px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{display:inline-flex;align-items:center;gap:9px;padding:7px 12px 7px 8px;border:1px solid var(--line);border-radius:12px;font-size:13px;font-weight:600;background:rgba(255,255,255,.03)}
+.chip i{width:26px;height:26px;border-radius:8px;display:grid;place-items:center;font-style:normal;font-size:10px;font-weight:700;color:#fff}
+
+/* process */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.num{font-family:"Space Grotesk",Inter,system-ui,sans-serif;font-size:34px;font-weight:700;color:var(--blue);margin-bottom:14px}
+.why{display:grid;grid-template-columns:1fr 1fr;gap:52px;align-items:center}
+.why .checks{margin-top:26px}
+.live .top{display:flex;justify-content:space-between;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:18px}
+.live .top b{color:var(--blue);letter-spacing:0;text-transform:none;font-weight:500;font-size:12px}
+.live .top b::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--pink);margin-right:7px;animation:blink 1.2s infinite}
+@keyframes blink{50%{opacity:.25}}
+.screen{aspect-ratio:16/11;border-radius:16px;border:1px solid var(--line);background:radial-gradient(80% 80% at 50% 50%,#101a5a,#020308 75%);display:flex;align-items:center;justify-content:center;gap:3px;overflow:hidden}
+.screen i{width:3px;border-radius:3px;background:var(--grad);animation:wave 1.4s ease-in-out infinite}
+@keyframes wave{0%,100%{transform:scaleY(.35)}50%{transform:scaleY(1)}}
+.tracks{display:grid;gap:8px;margin:16px 0}
+.tracks i{height:6px;border-radius:6px;background:rgba(255,255,255,.07);position:relative;overflow:hidden}
+.tracks i::after{content:"";position:absolute;inset:0;width:35%;background:var(--grad);opacity:.7;animation:slide 4s linear infinite}
+.tracks i:nth-child(2)::after{animation-delay:-1.3s;width:22%}.tracks i:nth-child(3)::after{animation-delay:-2.6s;width:48%}
+@keyframes slide{from{transform:translateX(-100%)}to{transform:translateX(300%)}}
+.time{text-align:right;font-family:"Space Grotesk",Inter,system-ui,sans-serif;font-weight:600;font-size:14px}
+
+/* experience */
+.exp{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+
+/* faq */
+.faq{max-width:780px;margin:0 auto;display:grid;gap:12px}
+details{border:1px solid var(--line);border-radius:16px;background:rgba(7,11,28,.85);padding:0 22px}
+summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:19px 0;font-weight:600;font-size:15.5px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";flex:none;width:28px;height:28px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;font-weight:400;color:var(--muted)}
+details[open] summary::after{content:"–"}
+details p{color:var(--muted);font-size:14.5px;padding-bottom:20px}
+
+/* contact */
+.contact{display:grid;grid-template-columns:.85fr 1.15fr;gap:48px;padding:48px}
+.contact h2{margin-bottom:18px}
+.contact .lead{font-size:15.5px}
+.reach{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
+form{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+label{display:grid;gap:8px;font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);font-weight:600}
+label.full{grid-column:1/-1}
+label em{color:var(--pink);font-style:normal}
+input,select,textarea{font:15px Inter,sans-serif;color:var(--text);background:#111729;border:1px solid var(--line);border-radius:14px;padding:12px 14px;width:100%;letter-spacing:0;text-transform:none}
+input:focus,select:focus,textarea:focus{outline:2px solid rgba(76,141,255,.6);outline-offset:1px}
+textarea{min-height:120px;resize:vertical}
+form .btn{grid-column:1/-1;justify-content:center;padding:15px}
+
+footer{border-top:1px solid var(--line);padding:56px 0 34px;margin-top:40px}
+.foot{display:grid;grid-template-columns:1.4fr 1fr;gap:40px}
+.foot h3{font-size:22px;margin:16px 0 4px}
+.foot p{color:var(--muted);font-size:14px}
+.foot ul{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:8px 30px;font-size:14px;color:#cfd5ea;margin-top:14px}
+.base{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;border-top:1px solid var(--line);margin-top:40px;padding-top:22px;font-size:12.5px;color:var(--muted)}
+
+.reveal{opacity:0;transform:translateY(18px);transition:.7s ease}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}html{scroll-behavior:auto}}
+@media (max-width:900px){
+  section{padding:68px 0}
+  .hero{padding-top:118px}
+  .hero-grid,.about,.why,.contact,.foot,.exp{grid-template-columns:1fr}
+  .three{grid-template-columns:1fr}.steps{grid-template-columns:1fr 1fr}
+  .contact{padding:28px 22px}
+  .links{position:absolute;top:68px;left:0;right:0;flex-direction:column;gap:0;background:rgba(3,4,15,.97);border-bottom:1px solid var(--line);display:none}
+  .links.open{display:flex}.links a{padding:14px 20px;border-top:1px solid var(--line)}
+  #burger{display:block}.nav>.btn{display:none}
+}
+@media (max-width:560px){.steps,.two,form{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<header><div class="wrap nav">
+  <a class="logo" href="#home"><span class="mark"><span data-f="initials"></span></span><span data-f="brand"></span></a>
+  <nav class="links" id="links">
+    <a href="#home">Home</a><a href="#work">Work</a><a href="#services">Services</a><a href="#claude">AI Workflows</a><a href="#about">About</a><a href="#process">Process</a><a href="#contact">Contact</a>
+  </nav>
+  <a class="btn primary" href="#contact">Let's Work Together</a>
+  <button id="burger" aria-label="Menu">☰</button>
+</div></header>
+
+<main>
+<section class="hero" id="home"><div class="wrap hero-grid">
+  <div>
+    <div class="eyebrow" data-f="role"></div>
+    <h1>I Build VSLs and AI Ads That <span class="g">Stop the Scroll and Scale.</span></h1>
+    <p>Hi, I'm <span data-f="name"></span>. I create VSL creatives, AI-powered UGC, 3D animated ads, and short-form performance videos for DTC and e-commerce brands. I also build with Claude directly, turning ad research, scripting, and shot planning into repeatable workflows.</p>
+    <div class="cta">
+      <a class="btn primary" href="#work">View My Work</a>
+      <a class="btn" href="#claude">How I Use Claude</a>
+      <a class="btn" href="#contact">Let's Work Together</a>
+    </div>
+    <div class="ticker">VSL <b>•</b> AI UGC <b>•</b> 3D Animated Ads <b>•</b> Short-Form <b>•</b> E-commerce</div>
+  </div>
+  <div class="stage" id="stage">
+    <div class="phones">
+      <div class="phone">AI UGC<i></i><i></i></div>
+      <div class="phone">VSL<i></i><i></i></div>
+      <div class="phone">3D Ad<i></i><i></i></div>
+    </div>
+  </div>
+</div></section>
+
+<section id="claude"><div class="wrap">
+  <div class="head reveal">
+    <div class="eyebrow">Claude-Powered Workflows</div>
+    <h2>I Build Winning Ads <span class="g">with Claude</span></h2>
+    <p class="lead">Beyond editing, I work with AI agents directly: prompting Claude in depth and packaging repeatable steps into custom Skills, so creative work starts from research instead of guesswork and gets delivered faster.</p>
+  </div>
+  <div class="three reveal">
+    <div class="card"><span class="tag">Strategy</span><h3>Reverse-Engineering Winning Ads</h3><p>I break down high-spend ads with a teardown framework covering hook, structure, pacing, and offer, then rebuild those proven patterns around your product.</p></div>
+    <div class="card"><span class="tag">Creative</span><h3>From Brief to Story and Shots</h3><p>A client brief goes in; an original story, script, and shot plan come out in the format that fits: UGC, AI drama, 3D animation, or talking head.</p></div>
+    <div class="card"><span class="tag">Speed</span><h3>Efficient Work, Faster Delivery</h3><p>Custom Skills turn hours of setup into a single command, so more time goes into the creative itself and you get polished work sooner.</p></div>
+  </div>
+  <div class="card term reveal">
+    <div class="term-bar"><i></i><i></i><i></i>&nbsp; claude · brief-to-story</div>
+    <div class="term-body">
+      <div class="cmd"><b>›</b> /skill brief-to-story</div>
+      <small>brief: client-brief.pdf · reference: winning-ad.mp4</small>
+      <ul>
+        <li>Reference ad torn down: hook, beats, pacing, offer</li>
+        <li>Hook candidates written and ranked</li>
+        <li>Original story and script drafted in the reference format</li>
+        <li>Shot list and first-frame prompts generated</li>
+        <li>Realism QA pass on every UGC shot</li>
+      </ul>
+      <small>skill run complete</small>
+    </div>
+  </div>
+  <p class="note">Example of how a Skill run looks. The actual steps depend on the project.</p>
+</div></section>
+
+<section id="results" hidden><div class="wrap">
+  <div class="head reveal">
+    <div class="eyebrow">Performance Highlights</div>
+    <h2>Ads With <span class="g">Real Results</span></h2>
+    <p class="lead">Creatives backed by paid-ad performance data.</p>
+  </div>
+  <div class="results" id="resultsGrid"></div>
+</div></section>
+
+<section id="work"><div class="wrap">
+  <div class="head center reveal">
+    <div class="eyebrow">Selected Work</div>
+    <h2>Selected <span class="g">Work</span></h2>
+    <p class="lead">A collection of VSL creatives, AI-powered ads, animated product videos, and short-form content made for brands and online audiences.</p>
+  </div>
+  <div class="filters" id="filters"></div>
+  <div class="work" id="workGrid"></div>
+  <div class="more"><a class="btn" id="driveBtn" target="_blank" rel="noopener">Open full portfolio on Google Drive ↗</a></div>
+</div></section>
+
+<section id="services"><div class="wrap">
+  <div class="head reveal">
+    <div class="eyebrow">Services</div>
+    <h2>What I Can <span class="g">Create for You</span></h2>
+    <p class="lead">From a raw brief to AI-powered campaigns, I make videos built to hold attention, communicate clearly, and sell the product.</p>
+  </div>
+  <div class="services reveal" id="servicesGrid"></div>
+</div></section>
+
+<section id="about"><div class="wrap about">
+  <div class="portrait reveal" id="portrait">Your photo here</div>
+  <div class="reveal">
+    <div class="eyebrow">About Me</div>
+    <h2>Creatives built to <span class="g">convert.</span></h2>
+    <p>Hi, I'm <span data-f="name"></span>, an AI video editor focused on VSLs and ad creatives made to perform with real spend behind them.</p>
+    <p>My work covers direct-response VSLs, AI-powered UGC, 3D animated ads, and short-form videos for DTC and e-commerce brands, usually starting from a client brief and a reference ad.</p>
+    <p>I combine editing, storytelling, AI generation, and direct-response structure to turn a brief into content that feels clear, modern, and ready for paid social.</p>
+    <div class="callout">I also build with AI directly: I prompt Claude for research, scripting, and production planning, and write custom Skills that turn repeatable steps into one-command workflows.</div>
+    <ul class="checks two" id="aboutChecks"></ul>
+  </div>
+</div></section>
+
+<section id="skills"><div class="wrap">
+  <div class="head center reveal"><div class="eyebrow">Skills &amp; Tools</div><h2>Creative <span class="g">Skills</span></h2></div>
+  <div class="pills reveal" id="pills"></div>
+  <div class="center reveal"><h3 style="font-size:26px">Tools I Work With</h3><p class="lead" style="font-size:14.5px;margin-top:8px">The creative apps and platforms I use to bring projects to life.</p></div>
+  <div class="tools reveal" id="tools"></div>
+</div></section>
+
+<section id="process"><div class="wrap">
+  <div class="head center reveal"><div class="eyebrow">Creative Process</div><h2>How I <span class="g">Work</span></h2></div>
+  <div class="steps reveal">
+    <div class="card"><div class="num">01</div><h3>Understand</h3><p>Review the brief, product, audience, platform, references, and the main objective.</p></div>
+    <div class="card"><div class="num">02</div><h3>Plan</h3><p>Lock the angle, hook, script, structure, shot list, and the assets required.</p></div>
+    <div class="card"><div class="num">03</div><h3>Create</h3><p>Generate and edit scenes, add voice, captions, sound design, and motion.</p></div>
+    <div class="card"><div class="num">04</div><h3>Refine</h3><p>Review, revise, tighten pacing, check consistency, and export for each platform.</p></div>
+  </div>
+</div></section>
+
+<section><div class="wrap why">
+  <div class="reveal">
+    <div class="eyebrow">Why Work With Me</div>
+    <h2>More Than Just <span class="g">Video Editing</span></h2>
+    <p class="lead" style="margin-top:16px">Every project combines creative editing, direct-response thinking, AI-assisted production, and platform-focused execution.</p>
+    <ul class="checks" id="whyChecks"></ul>
+  </div>
+  <div class="card live reveal">
+    <div class="top"><span>Live Edit</span><b>Rendering</b></div>
+    <div class="screen" id="screen"></div>
+    <div class="tracks"><i></i><i></i><i></i></div>
+    <div class="time">00:47 / 02:15</div>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <div class="head center reveal">
+    <div class="eyebrow">Selected Experience</div>
+    <h2>Experience &amp; <span class="g">Creative Focus</span></h2>
+    <p class="lead">Hands-on work across direct-response video, AI-assisted production, and product advertising for digital platforms.</p>
+  </div>
+  <div class="exp reveal" id="exp"></div>
+</div></section>
+
+<section id="faq"><div class="wrap">
+  <div class="head center reveal"><div class="eyebrow">FAQ</div><h2>Frequently Asked <span class="g">Questions</span></h2></div>
+  <div class="faq reveal" id="faqList"></div>
+</div></section>
+
+<section id="contact"><div class="wrap">
+  <div class="card contact reveal">
+    <div>
+      <div class="eyebrow">Contact</div>
+      <h2>Have a Project <span class="g">in Mind?</span></h2>
+      <p class="lead">Tell me about your product, campaign, or video idea. Let's create something clear, engaging, and built for your audience.</p>
+      <div class="reach" id="reach"></div>
+    </div>
+    <form id="form">
+      <label>Name <em>*</em><input name="Name" required></label>
+      <label>Email <em>*</em><input name="Email" type="email" required></label>
+      <label>Company or Brand<input name="Company"></label>
+      <label>Project Type<select name="Project type" id="ptype"><option value="">Select an option</option></select></label>
+      <label>Estimated Budget<input name="Budget" placeholder="e.g. $1k–$3k"></label>
+      <label>Target Platform<input name="Platform" placeholder="TikTok, YouTube, Meta..."></label>
+      <label>Preferred Deadline<input name="Deadline" type="date"></label>
+      <label>File or Project Link<input name="Link" placeholder="Drive, Dropbox, Frame.io"></label>
+      <label class="full">Project Details <em>*</em><textarea name="Details" required placeholder="Tell me about the project, audience, references..."></textarea></label>
+      <button class="btn primary" id="send" type="submit">Send Message</button>
+    </form>
+  </div>
+</div></section>
+</main>
+
+<footer><div class="wrap">
+  <div class="foot">
+    <div>
+      <a class="logo" href="#home"><span class="mark"><span data-f="initials"></span></span><span data-f="brand"></span></a>
+      <h3 data-f="name"></h3><p data-f="roleLine"></p>
+    </div>
+    <div>
+      <div class="eyebrow" style="color:var(--muted)">Navigate</div>
+      <ul><li><a href="#work">Work</a></li><li><a href="#services">Services</a></li><li><a href="#about">About</a></li><li><a href="#process">Process</a></li><li><a href="#faq">FAQ</a></li><li><a href="#contact">Contact</a></li></ul>
+    </div>
+  </div>
+  <div class="base"><span>© <span id="yr"></span> <span data-f="name"></span>. All rights reserved.</span><span>Built with intention.</span></div>
+</div></footer>
+
+<div id="modal" role="dialog" aria-modal="true"><div class="mbox">
+  <div class="mtop"><span id="mtitle"></span><span style="display:flex;gap:14px;align-items:center"><a id="mopen" class="btn" style="padding:7px 14px;font-size:12.5px" target="_blank" rel="noopener">Open in Drive ↗</a><button id="mclose" aria-label="Close">×</button></span></div>
+  <p id="mhint" style="padding:10px 18px;font-size:13px;color:var(--muted);border-bottom:1px solid var(--line)">If the video doesn't play here, use "Open in Drive".</p>
+  <iframe id="mframe" allow="autoplay; fullscreen" allowfullscreen></iframe>
+</div></div>
+
+<script>
+/* =====================================================================
+   EDIT THIS BLOCK — everything personal on the site comes from here.
+   ===================================================================== */
+const SITE = {
+  name: "Fuen Belarma",
+  brand: "FB.",
+  initials: "FB",
+  role: "AI Video Editor • VSL Creative Specialist",
+  roleLine: "AI Video Editor and VSL Creative Specialist",
+  email: "belarmachristian@gmail.com",
+  whatsapp: "639912243713",            // digits only with country code
+  photo: "images/me.jpg",
+  heroImage: "",                     // e.g. "images/hero.jpg" (replaces the phone mockups)
+  driveFolder: "19lZ8f6jMZ8bfmp57bOQxD4uYSxesuHxp",
+
+  /* One entry per video. driveId = the ID from a Drive FILE link (drive.google.com/file/d/THIS_PART/view).
+     Thumbnails come from Drive automatically; add thumb: "images/x.jpg" to override one. */
+  projects: [
+    // VSL
+    { title: "Aesop Skincare VSL", category: "VSL and Ads", driveId: "18I8hxfSL3UkVcVH1SdZn0sTWfx-BqiJr",
+      desc: "AI-produced video sales letter for a premium skincare brand, built around a clear hook and benefit-led story.", tags: ["Hook", "Storytelling", "CTA"] },
+    { title: "Menopause Relief VSL", category: "VSL and Ads", driveId: "1y5VQWHDK72h6X6J7hQ-ey84T-3NiEJEJ",
+      desc: "Direct-response VSL for a health product, following a problem-agitate-solution structure.", tags: ["Problem-Solution", "Proof", "CTA"] },
+    { title: "Color Swatch Product Video", category: "VSL and Ads", driveId: "1dhUjYjLur8yvTbVBHPIXNpFVUzyzN2rr",
+      desc: "Product-focused ad creative presenting colour options with clean pacing and visual consistency.", tags: ["Product", "Motion", "Color"] },
+    { title: "Lux Organic VSL", category: "VSL and Ads", driveId: "1k3UHKiUXfeBZmWD6wpElNwjgUFvpHfI-",
+      desc: "Conversion-focused VSL for an organic product line with lifestyle visuals and a clear offer.", tags: ["Hook", "B-roll", "Offer"] },
+    { title: "Scentiment Fragrance Ad", category: "VSL and Ads", driveId: "1mdVJSB-ivMqQYxWPka58UxmJzxKdRZdE",
+      desc: "UGC-style direct-response creative for a fragrance brand, scripted for paid social.", tags: ["UGC Style", "Script", "CTA"] },
+    // AI UGC
+    { title: "Credit Repair AI UGC (v1)", category: "AI UGC", driveId: "1WzJjH7il3zedw-4X2ygmA9lNMZf1B-1U",
+      desc: "AI creator testimonial-style ad for a credit repair offer, written to a direct-response script.", tags: ["AI Creator", "Testimonial", "Script"] },
+    { title: "Credit Repair AI UGC (v2)", category: "AI UGC", driveId: "1-vjfGV-Qoqs_NhtjqtOWWntMRkwzz_29",
+      desc: "Second angle on the credit repair offer with a different hook and creator.", tags: ["AI Creator", "Hook Variant"] },
+    { title: "Credit Repair AI UGC (v3)", category: "AI UGC", driveId: "1d45O0fydIJvvAoppgP_th6b6y8H3tnXW",
+      desc: "Third creative variant for the same offer, testing a new opening and pacing.", tags: ["AI Creator", "Hook Variant"] },
+    { title: "EZWays Credit AI UGC", category: "AI UGC", driveId: "1pBT7U5FAucSGp_3rnEgt_3pDEWT0r6Zb",
+      desc: "AI UGC ad for a credit service, phone-native delivery with conversion-focused scripting.", tags: ["AI Creator", "Phone-Native"] },
+    { title: "EZWays Trading App AI UGC", category: "AI UGC", driveId: "1r9feHDBotneNqC-UtGSl_F9Vf_4zYBUl",
+      desc: "AI creator ad for a trading app, built around a relatable hook and app demonstration.", tags: ["AI Creator", "App Demo"] },
+    { title: "Elbow Support AI UGC", category: "AI UGC", driveId: "1b-mmpYKukzHGkcnWiMgJ1KKpbHu-6hGp",
+      desc: "Product-in-hand AI UGC creative for an elbow support product, variant 2.", tags: ["Product Demo", "AI Creator"] },
+    // 3D Animation
+    { title: "Total Relief Cream (Pixar Style)", category: "3D Animation", driveId: "1qep4tav-28BDP9YKkMKHMWLWZBgHyVRW",
+      desc: "Pixar-style 3D animated story ad for a pain relief cream, character-driven from hook to CTA.", tags: ["3D", "Character", "Story"] },
+    { title: "AI Product Ad Creative", category: "3D Animation", driveId: "1FcS8EUY9Aw0dvL9ljKjecGYrKqc7B-q2",
+      desc: "Cinematic AI-generated 3D product advertisement with premium lighting and motion.", tags: ["3D Render", "Motion", "Lighting"] },
+    { title: "Coellyo Product Video", category: "3D Animation", driveId: "1vv-sedrxKEQ6bUf2ijP2Xs6erz_Njy4x",
+      desc: "3D product presentation test for Coellyo, focused on polished product detail.", tags: ["3D", "Product"] },
+    { title: "Fitness Wear 3D Ad", category: "3D Animation", driveId: "1ASd9LfLS7kHV63syph6sXsjOL1_80ug3",
+      desc: "Animated ad for an activewear brand with stylised 3D visuals and energetic pacing.", tags: ["3D", "Motion", "Apparel"] },
+    { title: "Gourmet Coffee 3D Ad", category: "3D Animation", driveId: "194TwAfjPDB7TnNvcOzasJmoCt8j_O-dj",
+      desc: "Appetite-led 3D animated ad for a gourmet coffee product.", tags: ["3D", "Food & Drink"] },
+    // AI Drama / Claymation / Podcast
+    { title: "AI Drama Ad", category: "AI Drama", driveId: "1bCGK0PoOQgkiTTR9EvRYvrWd9b7QVQnr",
+      desc: "Story-driven AI drama creative that hooks with a scene and lands on the product.", tags: ["AI Drama", "Story", "Hook"] },
+    { title: "Primal Queen Claymation Ad", category: "Claymation", driveId: "1dtOS5OIrvDB3mK8zEUX7cUaI6LEWA3c8",
+      desc: "Claymation-style AI product ad for Primal Queen with a playful, tactile look.", tags: ["Claymation", "Product", "Stylised"] },
+    { title: "AI Podcast Clip", category: "Podcast", driveId: "1OJ45aZTb8Wop8cEcNeQy4LFn7-VPbNM9",
+      desc: "AI-produced podcast-style video test with clean captions and pacing.", tags: ["Podcast", "Captions"] },
+  ],
+
+  /* "Ads With Real Results". driveId = the ad's video (leave "" for no video), image = the results screenshot. */
+  results: [
+    { title: "Product name here", type: "Ad type here", driveId: "", image: "images/results-1.png" },
+    { title: "Product name here", type: "Ad type here", driveId: "", image: "images/results-2.png" },
+    { title: "Product name here", type: "Ad type here", driveId: "", image: "images/results-3.png" },
+    { title: "Product name here", type: "Ad type here", driveId: "", image: "images/results-4.png" },
+  ],
+
+  services: [
+    ["VSL and Performance Ads", "Direct-response videos with strong hooks, problem-solution stories, and clear calls to action."],
+    ["AI UGC Advertisements", "AI creator videos, product demos, testimonial-style formats, and lifestyle creatives."],
+    ["3D Animated Ads", "Character-driven animated stories and cinematic product presentations."],
+    ["Short-Form Video Editing", "Reels, TikTok, Shorts, and branded social creatives with captions and sound design."],
+    ["DTC and E-commerce Creatives", "Product ads for online stores, TikTok Shop, Meta Ads, landing pages, and launches."],
+    ["Ad Research and Teardowns", "Finding high-spend winning ads in your niche and breaking down why they work."],
+    ["Claude AI Workflows", "Advanced Claude prompting and custom Skills that turn repeatable creative steps into one-command workflows."],
+  ],
+  aboutChecks: ["VSL and direct-response experience", "AI-assisted video production", "DTC and e-commerce creative production", "3D and character-driven content", "Brief-to-creative client work", "Remote collaboration available", "Mobile-first video production", "Adaptable creative styles", "Claude prompting and custom Skills"],
+  skills: ["Claude Prompting", "Custom Claude Skills", "VSL Editing", "Direct-Response Editing", "AI Video Generation", "AI UGC Production", "3D Animated Ads", "Ad Teardowns", "Scriptwriting", "Hook Writing", "Short-Form Video Editing", "Caption Animation", "Sound Design", "Voiceover Direction", "Color Correction", "Storytelling", "Pacing", "Visual Consistency", "E-commerce Advertising", "Creative Direction"],
+  /* [category, [[tool name, badge letters, badge colour], ...]] — edit to match the tools you actually use */
+  tools: [
+    ["AI Agent & Automation", [["Claude", "C", "#d97757"], ["MCP Servers", "M", "#1c2033"]]],
+    ["Video Editing Software", [["Adobe Premiere Pro", "Pr", "#7b61ff"], ["CapCut", "CC", "#111111"]]],
+    ["Motion Graphics Software", [["Adobe After Effects", "Ae", "#8f7bff"]]],
+    ["AI Video Tools", [["Higgsfield", "H", "#ff6b35"], ["Google Flow", "GF", "#3b82f6"], ["Grok AI", "G", "#1c2033"]]],
+    ["Audio Editing Tools", [["ElevenLabs", "11", "#ffffff", "#111"], ["Adobe Podcast", "AP", "#9b7bff"]]],
+    ["Design Tools", [["Canva", "C", "#00c4cc"], ["Photoshop", "Ps", "#2f8cff"], ["Illustrator", "Ai", "#ff9a00"]]],
+    ["Project Management Tools", [["Trello", "T", "#0079bf"], ["ClickUp", "CU", "#7b68ee"], ["Slack", "S", "#4a154b"]]],
+  ],
+  whyChecks: ["Strong attention to visual consistency", "Content designed for mobile-first platforms", "Clear and responsive communication", "Understanding of hooks and audience retention", "Research-led concepts based on ads that already work", "Claude prompting and custom Skills", "Flexible styles for different brands", "Organized project delivery", "Focus on creativity and business objectives", "Content adapted for multiple platforms"],
+  experience: [
+    ["VSL and Direct-Response Creatives", "Building video sales letters from client briefs, structured around hook, problem, solution, proof, and call to action."],
+    ["AI Video Production", "Creating AI-generated creators, product demonstrations, lifestyle scenes, and branded video content."],
+    ["3D Animated Ads", "Producing character-driven animated stories and product ads in a stylised 3D look."],
+    ["Short-Form Content", "Editing vertical videos for TikTok, Reels, and Shorts with strong hooks, pacing, captions, and sound design."],
+    ["Claude Skills and Workflows", "Prompting Claude and building custom Skills so ad research, scripting, and shot planning run as repeatable workflows."],
+  ],
+  faq: [
+    ["What type of projects do you accept?", "VSL creatives, AI UGC, 3D animated ads, short-form content, social media advertisements, and DTC or e-commerce content."],
+    ["Can you work from just a brief?", "Yes. A brief plus any reference ads you like is enough to develop the angle, script, and shot plan."],
+    ["Can you create a video without traditional footage?", "Yes. Many projects are produced fully with AI-generated visuals, voice, and motion, with product images as the starting point."],
+    ["Do you offer revisions?", "Yes. Revisions are part of the process and the number of rounds is agreed before the project starts."],
+    ["Can you create videos for different platforms?", "Yes. Each video is paced and exported for where it will run: Meta, TikTok, YouTube, or a landing page."],
+    ["Can you create different aspect ratios?", "Yes. 9:16, 4:5, 1:1, and 16:9 versions can be delivered from the same project."],
+    ["How can I send my project files?", "Share a Google Drive, Dropbox, or Frame.io link through the contact form."],
+    ["Do you work remotely?", "Yes. All projects are handled remotely with clear updates along the way."],
+    ["Do you set up Claude prompts or Skills?", "Yes. I can build prompts and custom Skills for ad research, scripting, and creative production workflows."],
+  ],
+};
+/* ============================ END OF EDIT BLOCK ============================ */
+
+const $ = s => document.querySelector(s), el = (t, c, h) => { const e = document.createElement(t); if (c) e.className = c; if (h != null) e.innerHTML = h; return e; };
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+
+document.querySelectorAll("[data-f]").forEach(n => n.textContent = SITE[n.dataset.f] || "");
+document.title = `${SITE.name} | ${SITE.roleLine}`;
+$("#yr").textContent = new Date().getFullYear();
+if (SITE.heroImage) $("#stage").innerHTML = `<img src="${esc(SITE.heroImage)}" alt="${esc(SITE.name)} portfolio banner">`;
+if (SITE.photo) $("#portrait").innerHTML = `<img src="${esc(SITE.photo)}" alt="${esc(SITE.name)}">`;
+$("#driveBtn").href = `https://drive.google.com/drive/folders/${SITE.driveFolder}`;
+
+/* modal */
+const modal = $("#modal"), frame = $("#mframe");
+function openItem(p) {
+  frame.src = p.driveId ? `https://drive.google.com/file/d/${p.driveId}/preview`
+                        : `https://drive.google.com/embeddedfolderview?id=${p.folderId || SITE.driveFolder}#grid`;
+  $("#mopen").href = p.driveId ? `https://drive.google.com/file/d/${p.driveId}/view` : `https://drive.google.com/drive/folders/${p.folderId || SITE.driveFolder}`;
+  $("#mtitle").textContent = p.title; modal.classList.add("open");
+}
+function closeModal() { modal.classList.remove("open"); frame.src = "about:blank"; }
+$("#mclose").onclick = closeModal;
+modal.onclick = e => { if (e.target === modal) closeModal(); };
+addEventListener("keydown", e => { if (e.key === "Escape") closeModal(); });
+
+/* work grid + filters */
+const cats = ["All Projects", ...new Set(SITE.projects.map(p => p.category))];
+let active = cats[0];
+function drawWork() {
+  const f = $("#filters"); f.innerHTML = "";
+  cats.forEach(c => { const b = el("button", c === active ? "on" : "", esc(c)); b.onclick = () => { active = c; drawWork(); }; f.append(b); });
+  const g = $("#workGrid"); g.innerHTML = "";
+  SITE.projects.filter(p => active === cats[0] || p.category === active).forEach(p => {
+    const src = p.thumb || (p.driveId ? `https://drive.google.com/thumbnail?id=${p.driveId}&sz=w800` : "");
+    const n = SITE.projects.filter(x => x.category === p.category).length;
+    const card = el("button", "card proj",
+      `<div class="thumb">${src ? `<div class="bg" style="background-image:url('${esc(src)}')"></div><img class="v" loading="lazy" src="${esc(src)}" alt="" onerror="this.parentNode.innerHTML=''">` : ""}</div>
+       <div class="body"><div class="cat">${esc(p.category)}</div><h3>${esc(p.title)}</h3><p>${esc(p.desc)}</p>
+       <div class="tags">${(p.tags || []).map(t => `<span>${esc(t)}</span>`).join("")}</div><div class="view">View Project →</div></div>`);
+    card.onclick = () => openItem(p); g.append(card);
+  });
+}
+drawWork();
+
+/* results */
+if (SITE.results.length) {
+  $("#results").hidden = false;
+  SITE.results.forEach(r => $("#resultsGrid").append(el("div", "card res",
+    `${r.driveId ? `<div class="vid"><iframe loading="lazy" src="https://drive.google.com/file/d/${esc(r.driveId)}/preview" allow="autoplay; fullscreen" allowfullscreen></iframe></div><a class="view" style="display:block;padding:10px 22px 0" href="https://drive.google.com/file/d/${esc(r.driveId)}/view" target="_blank" rel="noopener">Open in Drive ↗</a>` : ""}
+     <div class="meta"><div class="cat">Ad performance</div><h3>${esc(r.title)}</h3><p>${esc(r.type || "")}</p></div>
+     ${r.image ? `<img class="shot" loading="lazy" src="${esc(r.image)}" alt="${esc(r.title)} ad performance metrics">` : ""}`)));
+}
+
+/* lists */
+SITE.services.forEach(([t, d]) => $("#servicesGrid").append(el("div", "card", `<h3>${esc(t)}</h3><p>${esc(d)}</p><a href="#contact">Learn More →</a>`)));
+SITE.aboutChecks.forEach(t => $("#aboutChecks").append(el("li", "", esc(t))));
+SITE.whyChecks.forEach(t => $("#whyChecks").append(el("li", "", esc(t))));
+SITE.skills.forEach(t => $("#pills").append(el("span", "pill", esc(t))));
+SITE.tools.forEach(([c, list]) => $("#tools").append(el("div", "card",
+  `<small>Category</small><h4>${esc(c)}</h4><div class="chips">${list.map(([n, b, col, fg]) => `<span class="chip"><i style="background:${esc(col)};color:${esc(fg || "#fff")}">${esc(b)}</i>${esc(n)}</span>`).join("")}</div>`)));
+SITE.experience.forEach(([t, d], i) => $("#exp").append(el("div", "card", `<div class="num">0${i + 1}</div><h3>${esc(t)}</h3><p>${esc(d)}</p>`)));
+SITE.faq.forEach(([q, a], i) => { const d = el("details", "", `<summary>${esc(q)}</summary><p>${esc(a)}</p>`); if (!i) d.open = true; $("#faqList").append(d); });
+SITE.services.forEach(([t]) => $("#ptype").append(new Option(t)));
+$("#ptype").append(new Option("Other"));
+for (let i = 0; i < 46; i++) { const b = el("i"); b.style.height = 18 + Math.abs(Math.sin(i * .55)) * 55 + "%"; b.style.animationDelay = -i * .07 + "s"; $("#screen").append(b); }
+
+/* contact */
+const reach = $("#reach");
+if (SITE.email) { const a = el("a", "btn", "✉ " + esc(SITE.email)); a.href = "mailto:" + SITE.email; reach.append(a); }
+if (SITE.whatsapp) { const a = el("a", "btn", "WhatsApp"); a.href = "https://wa.me/" + SITE.whatsapp; a.target = "_blank"; a.rel = "noopener"; reach.append(a); }
+$("#send").textContent = SITE.whatsapp ? "Send via WhatsApp" : "Send Message";
+$("#form").onsubmit = e => {
+  e.preventDefault();
+  const lines = [...new FormData(e.target)].filter(([, v]) => v).map(([k, v]) => `${k}: ${v}`).join("\n");
+  const text = encodeURIComponent("New project enquiry\n\n" + lines);
+  if (SITE.whatsapp) window.open(`https://wa.me/${SITE.whatsapp}?text=${text}`, "_blank", "noopener");
+  else if (SITE.email) location.href = `mailto:${SITE.email}?subject=${encodeURIComponent("New project enquiry")}&body=${text}`;
+  else $("#send").textContent = "Add your email or WhatsApp in the SITE block";
+};
+
+/* nav + reveal */
+$("#burger").onclick = () => $("#links").classList.toggle("open");
+$("#links").onclick = () => $("#links").classList.remove("open");
+const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }), { threshold: .08 });
+document.querySelectorAll(".reveal").forEach(n => io.observe(n));
+</script>
+</body>
+</html>
