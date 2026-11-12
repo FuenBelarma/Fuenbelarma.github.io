@@ -63,12 +63,16 @@ header{position:fixed;inset:0 0 auto 0;z-index:50;backdrop-filter:blur(14px);bac
 .ticker{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--dim)}
 .ticker b{color:var(--blue);margin:0 10px;font-weight:400}
 .stage{position:relative;aspect-ratio:4/4.3;border-radius:28px;border:1px solid var(--line);overflow:hidden;background:radial-gradient(120% 90% at 50% 0%,#14205a,#060919 70%)}
-.stage img{width:100%;height:100%;object-fit:cover}
-.phones{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;gap:16px}
-.phone{width:27%;aspect-ratio:9/16;border-radius:18px;border:1px solid rgba(160,170,255,.35);background:linear-gradient(160deg,rgba(76,141,255,.35),rgba(155,92,246,.25) 55%,rgba(226,75,208,.22));box-shadow:0 30px 60px -20px rgba(80,70,255,.6);display:flex;flex-direction:column;justify-content:flex-end;padding:12px;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#dfe5ff}
+.stage>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 20%}
+.stage::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 35%,rgba(3,4,15,.55) 62%,rgba(3,4,15,.95));pointer-events:none}
+.phones{position:absolute;left:0;right:0;bottom:6%;z-index:2;display:flex;align-items:flex-end;justify-content:center;gap:14px}
+.phone{position:relative;overflow:hidden;cursor:pointer;background-size:cover!important;background-position:center!important;width:24%;aspect-ratio:9/16;border-radius:18px;border:1px solid rgba(160,170,255,.35);background:linear-gradient(160deg,rgba(76,141,255,.35),rgba(155,92,246,.25) 55%,rgba(226,75,208,.22));box-shadow:0 30px 60px -20px rgba(80,70,255,.6);display:flex;flex-direction:column;justify-content:flex-end;padding:12px;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#dfe5ff}
 .phone:nth-child(1){transform:rotate(-7deg) translateY(14px)}
 .phone:nth-child(2){transform:scale(1.12);z-index:2}
 .phone:nth-child(3){transform:rotate(7deg) translateY(14px)}
+.phone::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(3,4,15,.85));z-index:-1}
+.phone{isolation:isolate}
+.phone b{font-weight:600}
 .phone i{display:block;height:4px;border-radius:9px;background:rgba(255,255,255,.75);margin-top:6px;width:80%}
 .phone i+i{width:55%;opacity:.5}
 
@@ -97,6 +101,15 @@ header{position:fixed;inset:0 0 auto 0;z-index:50;backdrop-filter:blur(14px);bac
 /* work */
 .filters{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:34px}
 .filters button{font:inherit;font-size:13.5px;padding:9px 18px;border-radius:999px;border:1px solid var(--line);background:rgba(255,255,255,.03);color:var(--muted);cursor:pointer}
+.divider{grid-column:1/-1;margin:22px 0 2px;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--blue);font-weight:600;display:flex;align-items:center;gap:14px}
+.divider::after{content:"";flex:1;height:1px;background:var(--line)}
+.filters button.feat:not(.on){border-color:rgba(155,92,246,.6);color:#d9c8ff}
+.proj.feat{grid-column:1/-1;display:grid;grid-template-columns:1.3fr 1fr;border-color:rgba(155,92,246,.45);box-shadow:0 0 60px -25px rgba(155,92,246,.7)}
+.proj.feat .thumb{aspect-ratio:auto;min-height:320px}
+.proj.feat .body{display:flex;flex-direction:column;justify-content:center;padding:34px}
+.proj.feat h3{font-size:28px}
+.badge{display:inline-block;margin-bottom:12px;padding:5px 12px;border-radius:999px;background:var(--grad);font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:600;width:max-content}
+@media (max-width:900px){.proj.feat{grid-template-columns:1fr}.proj.feat .thumb{min-height:220px}}
 .filters button.on{background:var(--grad);color:#fff;border-color:transparent}
 .work{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:20px}
 .proj{padding:0;overflow:hidden;cursor:pointer;transition:.25s;text-align:left;color:inherit;font:inherit;display:block;width:100%}
@@ -127,7 +140,7 @@ header{position:fixed;inset:0 0 auto 0;z-index:50;backdrop-filter:blur(14px);bac
 .services a{display:inline-block;margin-top:16px;font-size:13.5px;color:var(--blue);font-weight:600}
 
 /* about */
-.about{display:grid;grid-template-columns:.9fr 1.1fr;gap:48px;align-items:start}
+.about{max-width:860px}
 .portrait{aspect-ratio:4/5;border-radius:26px;border:1px solid var(--line);overflow:hidden;background:radial-gradient(100% 80% at 50% 10%,#16225e,#060919 70%);display:grid;place-items:center;color:var(--dim);font-size:13px;letter-spacing:.14em;text-transform:uppercase}
 .portrait img{width:100%;height:100%;object-fit:cover}
 .about p{color:var(--muted);margin-top:16px}
@@ -236,11 +249,7 @@ footer{border-top:1px solid var(--line);padding:56px 0 34px;margin-top:40px}
     <div class="ticker">VSL <b>•</b> AI UGC <b>•</b> 3D Animated Ads <b>•</b> Short-Form <b>•</b> E-commerce</div>
   </div>
   <div class="stage" id="stage">
-    <div class="phones">
-      <div class="phone">AI UGC<i></i><i></i></div>
-      <div class="phone">VSL<i></i><i></i></div>
-      <div class="phone">3D Ad<i></i><i></i></div>
-    </div>
+    <div class="phones" id="phones"></div>
   </div>
 </div></section>
 
@@ -303,7 +312,6 @@ footer{border-top:1px solid var(--line);padding:56px 0 34px;margin-top:40px}
 </div></section>
 
 <section id="about"><div class="wrap about">
-  <div class="portrait reveal" id="portrait">Your photo here</div>
   <div class="reveal">
     <div class="eyebrow">About Me</div>
     <h2>Creatives built to <span class="g">convert.</span></h2>
@@ -418,7 +426,10 @@ const SITE = {
   email: "belarmachristian@gmail.com",
   whatsapp: "639912243713",            // digits only with country code
   photo: "images/me.jpg",
-  heroImage: "",                     // e.g. "images/hero.jpg" (replaces the phone mockups)
+  heroImage: "images/me.jpg",        // photo in the hero
+  /* The three phone cards in the hero: [label, Drive video ID]. The middle one is the biggest. */
+  heroPhones: [["AI UGC", "1WzJjH7il3zedw-4X2ygmA9lNMZf1B-1U"], ["AI Drama", "1bCGK0PoOQgkiTTR9EvRYvrWd9b7QVQnr"], ["3D Ad", "1qep4tav-28BDP9YKkMKHMWLWZBgHyVRW"]],
+  featured: "AI Drama",              // category shown first and highlighted in Selected Work
   driveFolder: "19lZ8f6jMZ8bfmp57bOQxD4uYSxesuHxp",
 
   /* One entry per video. driveId = the ID from a Drive FILE link (drive.google.com/file/d/THIS_PART/view).
@@ -525,8 +536,8 @@ const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;",
 document.querySelectorAll("[data-f]").forEach(n => n.textContent = SITE[n.dataset.f] || "");
 document.title = `${SITE.name} | ${SITE.roleLine}`;
 $("#yr").textContent = new Date().getFullYear();
-if (SITE.heroImage) $("#stage").innerHTML = `<img src="${esc(SITE.heroImage)}" alt="${esc(SITE.name)} portfolio banner">`;
-if (SITE.photo) $("#portrait").innerHTML = `<img src="${esc(SITE.photo)}" alt="${esc(SITE.name)}">`;
+if (SITE.heroImage) $("#stage").insertAdjacentHTML("afterbegin", `<img src="${esc(SITE.heroImage)}" alt="${esc(SITE.name)}">`);
+if (SITE.photo && $("#portrait")) $("#portrait").innerHTML = `<img src="${esc(SITE.photo)}" alt="${esc(SITE.name)}">`;
 $("#driveBtn").href = `https://drive.google.com/drive/folders/${SITE.driveFolder}`;
 
 /* modal */
@@ -542,19 +553,32 @@ $("#mclose").onclick = closeModal;
 modal.onclick = e => { if (e.target === modal) closeModal(); };
 addEventListener("keydown", e => { if (e.key === "Escape") closeModal(); });
 
+/* hero phones */
+(SITE.heroPhones || []).forEach(([label, id]) => {
+  const ph = el("div", "phone", `<b>${esc(label)}</b><i></i><i></i>`);
+  ph.style.background = `url('https://drive.google.com/thumbnail?id=${id}&sz=w600') center/cover, linear-gradient(160deg,#1b2a78,#2a1456 60%,#3a1240)`;
+  ph.onclick = () => openItem({ title: label, driveId: id });
+  $("#phones").append(ph);
+});
+
 /* work grid + filters */
-const cats = ["All Projects", ...new Set(SITE.projects.map(p => p.category))];
-let active = cats[0];
+SITE.projects.sort((a, b) => (b.category === SITE.featured) - (a.category === SITE.featured));
+const cats = [SITE.featured, ...new Set(SITE.projects.map(p => p.category).filter(c => c !== SITE.featured))];
+let active = SITE.featured;
 function drawWork() {
   const f = $("#filters"); f.innerHTML = "";
-  cats.forEach(c => { const b = el("button", c === active ? "on" : "", esc(c)); b.onclick = () => { active = c; drawWork(); }; f.append(b); });
+  cats.forEach(c => { const b = el("button", (c === active ? "on" : "") + (c === SITE.featured ? " feat" : ""), (c === SITE.featured ? "★ " + esc(c) + " + All" : esc(c))); b.onclick = () => { active = c; drawWork(); }; f.append(b); });
   const g = $("#workGrid"); g.innerHTML = "";
-  SITE.projects.filter(p => active === cats[0] || p.category === active).forEach(p => {
+  const list = active === SITE.featured ? SITE.projects : SITE.projects.filter(p => p.category === active);
+  list.forEach((p, i) => {
+    if (active === SITE.featured && i > 0 && p.category !== SITE.featured && list[i - 1].category === SITE.featured)
+      g.append(el("div", "divider", "All Projects"));
     const src = p.thumb || (p.driveId ? `https://drive.google.com/thumbnail?id=${p.driveId}&sz=w800` : "");
     const n = SITE.projects.filter(x => x.category === p.category).length;
-    const card = el("button", "card proj",
+    const isFeat = p.category === SITE.featured && active === SITE.featured;
+    const card = el("button", "card proj" + (isFeat ? " feat" : ""),
       `<div class="thumb">${src ? `<div class="bg" style="background-image:url('${esc(src)}')"></div><img class="v" loading="lazy" src="${esc(src)}" alt="" onerror="this.parentNode.innerHTML=''">` : ""}</div>
-       <div class="body"><div class="cat">${esc(p.category)}</div><h3>${esc(p.title)}</h3><p>${esc(p.desc)}</p>
+       <div class="body">${isFeat ? `<span class="badge">★ Featured</span>` : ""}<div class="cat">${esc(p.category)}</div><h3>${esc(p.title)}</h3><p>${esc(p.desc)}</p>
        <div class="tags">${(p.tags || []).map(t => `<span>${esc(t)}</span>`).join("")}</div><div class="view">View Project →</div></div>`);
     card.onclick = () => openItem(p); g.append(card);
   });
